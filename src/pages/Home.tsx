@@ -1,26 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 import moment from "moment";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { DateRange } from "@mui/x-date-pickers-pro/internal/models";
 import { Skeleton } from "@mui/material";
 
-import { Modal } from "../components/shared";
-import { Multiselect } from "../components/shared";
-import { DatePicker } from "../components/shared";
 import { MeetingsBoard } from "../components/Meetings/Index";
 import { IDayMeeting, IMeeting } from "../types/apiTypes";
 import filterOptions from "../utils/constants/meetingConstants";
 import groupMeetingDataWithFilter, {
   setNotificationsForMeeting,
 } from "../utils/helpers/meetingHelpers";
-import { format } from "../utils/formatters/dateFromatters";
-import { filter, getFiltersFromUrl } from "../utils/helpers/filterHelpers";
+import { filter } from "../utils/helpers/filterHelpers";
 import useFetchDataWithCache from "../hooks/useFetchData";
 import meetingService from "../services/meetingsService";
 import MeetingFilter from "../components/Meetings/MeetingFilter";
@@ -80,7 +75,7 @@ const Home = () => {
 
   return (
     <>
-     <MeetingFilter/>
+      <MeetingFilter />
       <ToastContainer position="top-right" autoClose={5000} theme="light" />
       {loading ? (
         <div>
