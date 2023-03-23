@@ -5,9 +5,9 @@ import MeetingCard from "../MeetingCard";
 describe("MeetingCard component", () => {
   const mockData = {
     name: "Test Meeting",
-    duration: "60 minutes",
+    duration: "60min",
     isOnline: "true",
-    time: "12:00:00"
+    time: "12:00:00",
   };
 
   it("should render meeting data correctly", () => {
