@@ -23,9 +23,9 @@ export default function useFetchDataWithCache(
       }
       try {
         const response = await request();
-        if (!response.status.ok) {
-          throw new Error(response.message);
-        }
+        // if (!response.status.ok) {
+        //   throw new Error(response.message);
+        // }
         setData(response.data);
         setCache("meetings", response.data, cacheAmount);
       } catch (error) {
