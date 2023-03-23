@@ -14,3 +14,6 @@ export function getCache(key: string) {
   const { data } = JSON.parse(item);
   return data;
 }
+
+const localStorageHelpers = { setCache, getCache };
+export default localStorageHelpers;

@@ -1,9 +1,9 @@
 import * as React from "react";
+import { ReactElement, FunctionComponent } from "react";
+
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
-import { FunctionComponent } from "react";
-import { ReactElement } from "react";
 
 const style = {
   position: "absolute" as "absolute",

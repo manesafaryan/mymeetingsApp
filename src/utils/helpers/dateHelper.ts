@@ -1,6 +1,6 @@
 import { IDayMeeting, IMeeting } from "../../types/apiTypes";
 
-export default function getTimesDiff(date: string) {
+export function getTimesDiff(date: string) {
   const now = new Date();
   const targetDate = new Date(date);
   const timeDiffMs = targetDate.getTime() - now.getTime();
@@ -29,3 +29,11 @@ export function addDuration(start: string, duration: string) {
     Number(s) + Number(duration.slice(0, -3)) * 60
   ).toLocaleTimeString("en-US", { hour12: false });
 }
+
+const dateHelper = {
+  getTimesDiff,
+  getTimerValue,
+  checkIfTheDayIsToday,
+  addDuration,
+};
+export default dateHelper;

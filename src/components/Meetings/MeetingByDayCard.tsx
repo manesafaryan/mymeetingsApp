@@ -5,7 +5,7 @@ import { makeStyles } from "@mui/styles";
 
 import MeetingCard from "./MeetingCard";
 
-import formatDate from "../../utils/formatters/dateFromatters";
+import { formatDate } from "../../utils/formatters/dateFromatters";
 import { IDayMeeting } from "../../types/apiTypes";
 import { usеUpdatedGroupedData } from "../../hooks";
 
@@ -16,7 +16,7 @@ interface IProps {
 const MeetingByDayCard: FunctionComponent<IProps> = ({ data }) => {
   const classes = useStyles();
   const [previous, upcoming] = usеUpdatedGroupedData(data);
-  
+
   return (
     <div className={classes.root}>
       <h1>

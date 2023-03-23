@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 
-import getTimesDiff, { getTimerValue } from "./dateHelper";
+import { getTimerValue, getTimesDiff } from "./dateHelper";
 import { startInterval } from "./setIntervalHelpers";
 
 import { IDayMeeting, IMeeting, MeetingSchedule } from "../../types/apiTypes";
@@ -9,8 +9,8 @@ interface MeetingByDay {
   [key: keyof MeetingSchedule]: IDayMeeting;
 }
 
-export default function groupMeetingDataWithFilter(
-  data: MeetingSchedule,
+export function groupMeetingDataWithFilter(
+  data: MeetingSchedule | null,
   filterCondition: (data: IMeeting, date: string) => boolean
 ): IDayMeeting[] {
   if (data) {
@@ -40,7 +40,7 @@ export function setNotificationsForMeeting(data: MeetingSchedule) {
   const meetingByOrder: IMeeting[] = groupMeetingDataWithFilter(
     data,
     (data: IMeeting, date: string) => calcIfMeetingIsUpcoming(date)
-  ).reduce((acc, curr) => [...acc, ...curr.items], []);
+  ).reduce((acc, curr) => [...acc, ...curr.items], [] as IMeeting[]);
 
   //Take the closest meeting and set time out for that meeting
 
@@ -55,8 +55,10 @@ export function setNotificationsForMeeting(data: MeetingSchedule) {
           return getTimerValue(closestMeeting, 1800);
         } else return false;
       };
-
-      startInterval(timerValue, alertNotif);
+      const MAX_32_BIT = 0x7fffffff;
+      if (timerValue < MAX_32_BIT) {
+        startInterval(timerValue, alertNotif);
+      }
     }
   }
 }
@@ -65,3 +67,10 @@ const calcIfMeetingIsUpcoming = (date: string) => {
   const thirtyMinutesInMs = 30 * 60 * 1000;
   return getTimesDiff(date) >= thirtyMinutesInMs;
 };
+
+const meetingHelpers = {
+  groupMeetingDataWithFilter,
+  setNotificationsForMeeting,
+  calcIfMeetingIsUpcoming,
+};
+export default meetingHelpers;

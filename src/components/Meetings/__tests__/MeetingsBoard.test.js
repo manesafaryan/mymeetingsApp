@@ -11,20 +11,20 @@ describe("MeetingsBoard", () => {
     const meetingData = [
       {
         day: "2022-01-01",
-        items: [{ time: "09:00", name: "Meeting 1", id: 1 }],
+        items: [{ time: "09:00", name: "Meeting 1", id: 1, duration: "15min" }],
       },
       {
         day: "2022-01-02",
-        items: [{ time: "10:00", name: "Meeting 2", id: 2 }],
+        items: [{ time: "10:00", name: "Meeting 2", id: 2, duration: "15min" }],
       },
       {
         day: "2022-01-03",
-        items: [{ time: "11:00", name: "Meeting 3", id: 3 }],
+        items: [{ time: "11:00", name: "Meeting 3", id: 3, duration: "15min" }],
       },
     ];
     const { getByText } = render(<MeetingsBoard meetingData={meetingData} />);
-    expect(getByText("Meeting 1")).toBeInTheDocument();
-    expect(getByText("Meeting 2")).toBeInTheDocument();
-    expect(getByText("Meeting 3")).toBeInTheDocument();
+    expect(getByText(/Meeting 1/i)).toBeInTheDocument();
+    expect(getByText(/Meeting 2/i)).toBeInTheDocument();
+    expect(getByText(/Meeting 3/i)).toBeInTheDocument();
   });
 });

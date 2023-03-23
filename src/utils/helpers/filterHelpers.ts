@@ -33,4 +33,10 @@ export function getFiltersFromUrl(params: URLSearchParams) {
   });
 }
 
-export default filterCustomRange;
+const filterHelpers = {
+  filterCustomRange,
+  filter,
+  getFiltersFromUrl,
+};
+
+export default filterHelpers;

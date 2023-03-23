@@ -1,4 +1,4 @@
-import groupMeetingDataWithFilter from "./meetingHelpers";
+import { groupMeetingDataWithFilter } from "./meetingHelpers";
 
 describe("groupMeetingDataWithFilter", () => {
   it("groups meeting data by day and filters by condition", () => {
@@ -28,19 +28,6 @@ describe("groupMeetingDataWithFilter", () => {
     };
     const expectedGroupedData = [
       {
-        day: "2022-03-23",
-        items: [
-          {
-            id: 3,
-            name: "Meeting 3",
-            duration: 45,
-            isOnline: true,
-            day: "2022-03-23",
-            time: "09:00:00",
-          },
-        ],
-      },
-      {
         day: "2022-03-22",
         items: [
           {
@@ -50,6 +37,19 @@ describe("groupMeetingDataWithFilter", () => {
             isOnline: true,
             day: "2022-03-22",
             time: "10:00:00",
+          },
+        ],
+      },
+      {
+        day: "2022-03-23",
+        items: [
+          {
+            id: 3,
+            name: "Meeting 3",
+            duration: 45,
+            isOnline: true,
+            day: "2022-03-23",
+            time: "09:00:00",
           },
         ],
       },

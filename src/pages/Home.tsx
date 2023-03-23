@@ -9,16 +9,17 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { Skeleton } from "@mui/material";
 
-import { MeetingsBoard } from "../components/Meetings/Index";
 import { IDayMeeting, IMeeting } from "../types/apiTypes";
 import filterOptions from "../utils/constants/meetingConstants";
-import groupMeetingDataWithFilter, {
+import {
   setNotificationsForMeeting,
+  groupMeetingDataWithFilter,
 } from "../utils/helpers/meetingHelpers";
 import { filter } from "../utils/helpers/filterHelpers";
 import useFetchDataWithCache from "../hooks/useFetchData";
 import meetingService from "../services/meetingsService";
-import MeetingFilter from "../components/Meetings/MeetingFilter";
+import MeetingsFilter from "../components/Meetings/MeetingFilter";
+import MeetingsBoard from "../components/Meetings/MeetingsBoard";
 
 export const filterItems = {
   [filterOptions.UpcomingMeetings]: {
@@ -48,7 +49,7 @@ export const filterItems = {
   [filterOptions.OfflineMeetings]: {
     label: "Offline Meetings",
     filter: (data: IMeeting) => {
-      return data.isOnline === "true";
+      return data.isOnline === "false";
     },
   },
 };
@@ -75,7 +76,7 @@ const Home = () => {
 
   return (
     <>
-      <MeetingFilter />
+      <MeetingsFilter />
       <ToastContainer position="top-right" autoClose={5000} theme="light" />
       {loading ? (
         <div>

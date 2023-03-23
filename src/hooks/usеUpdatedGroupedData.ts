@@ -1,7 +1,7 @@
 import { act } from "@testing-library/react";
 import { useEffect, useState } from "react";
 import { IDayMeeting, IMeeting } from "../types/apiTypes";
-import getTimesDiff, { getTimerValue } from "../utils/helpers/dateHelper";
+import { getTimerValue, getTimesDiff } from "../utils/helpers/dateHelper";
 import { startInterval } from "../utils/helpers/setIntervalHelpers";
 
 export default function useUpdatedgroupedData(data: IDayMeeting) {

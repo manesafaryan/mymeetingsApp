@@ -13,20 +13,26 @@ import { filterItems } from "../../pages/Home";
 import { getFiltersFromUrl } from "../../utils/helpers/filterHelpers";
 import { format } from "../../utils/formatters/dateFromatters";
 
-export default function MeetingFilter() {
+export default function MeetingsFilter() {
   let [searchParams] = useSearchParams();
   const [filters, setFilters] = useState(
     getFiltersFromUrl(searchParams).map((i) => filterItems[i].label)
   );
-  const [range, setRange] = useState<DateRange<string> | null>(null);
+  const [range, setRange] = useState<DateRange<string> | undefined>(undefined);
   const navigate = useNavigate();
   const handleSelect = (value: string[]): void => {
     setFilters(value);
   };
 
   const handleFilter = () => {
-    const dateStrStart = range?.[0] ? `&start=${format(range[0])}` : "";
-    const dateStrEnd = range?.[1] ? `&end=${format(range[1])}` : "";
+    const dateStrStart =
+      range?.[0] && format(range[0]) !== "NaN-NaN-NaN"
+        ? `&start=${format(range[0])}`
+        : "";
+    const dateStrEnd =
+      range?.[1] && format(range[1]) !== "NaN-NaN-NaN"
+        ? `&end=${format(range[1])}`
+        : "";
     const rangeStr = dateStrStart + dateStrEnd;
     navigate(
       `/filters?${filters
@@ -38,7 +44,6 @@ export default function MeetingFilter() {
   const handleReset = () => {
     navigate("/");
     setFilters([]);
-    setRange(null);
   };
 
   const handleCustomValue = (date: DateRange<string | null>): void => {
@@ -58,7 +63,7 @@ export default function MeetingFilter() {
         ></Multiselect>
         <div>
           <p>Custom Range</p>
-          <DatePicker handleValue={handleCustomValue} />
+          <DatePicker handleValue={handleCustomValue} value={range} />
         </div>
         <button onClick={handleReset}>Reset</button>
       </>

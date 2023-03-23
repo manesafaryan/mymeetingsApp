@@ -1,4 +1,4 @@
-export default function formatDate(date: Date): string {
+export function formatDate(date: Date): string {
   const options: Intl.DateTimeFormatOptions = {
     month: "short",
     day: "numeric",
@@ -21,4 +21,5 @@ export function format(date: string | null) {
   }
 }
 
-
+const dateFormatters = { format, formatDate };
+export default dateFormatters;

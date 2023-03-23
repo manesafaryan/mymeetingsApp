@@ -17,7 +17,7 @@ const MeetingCard: FunctionComponent<IProps> = ({ data }) => {
     <div className={classes.root}>
       <p>name:{data.name}</p>
       <p>starts:{data.time}</p>
-      <p>ends:{addDuration(data.time, data.duration)}</p>
+      {data.time && <p>ends:{addDuration(data.time, data.duration)}</p>}
     </div>
   );
 };

@@ -1,11 +1,11 @@
-export default function changeIntervalTimer(
+export function changeIntervalTimer(
   newTimerValue: number,
-  intervalId:  NodeJS.Timeout,
+  intervalId: NodeJS.Timeout,
   task: () => any
 ) {
   clearInterval(intervalId);
-  if(newTimerValue) {
-  startInterval(newTimerValue, task);
+  if (newTimerValue) {
+    startInterval(newTimerValue, task);
   }
 }
 
@@ -15,3 +15,7 @@ export function startInterval(timerValue: number, task: () => any) {
     changeIntervalTimer(newTime, intervalId, task);
   }, timerValue);
 }
+
+const setIntervalHelpers = { changeIntervalTimer, startInterval };
+
+export default setIntervalHelpers;
